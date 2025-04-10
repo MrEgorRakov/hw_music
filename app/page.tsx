@@ -5,22 +5,6 @@ import Link from 'next/link';
 
 export default function MyApp() {
 
-    const addTask = () => {
-        if (!task) return
-        const newTask = {
-            id: todos.length + 1,
-            title: task,
-            complete: false
-        }
-        setTodos([...todos, newTask])
-        setTask('')
-    }
-
-    const deleteTask = (id: number) => { 
-        console.log("Id: ", id)  
-        const newTodos = todos.filter(todo => todo.id !== id) 
-        setTodos(newTodos)
-    }
     return (
         <div className="min-h-screen bg-green-200 md:bg-green-500"> 
             <div className="flex mt-5 flex-col min-w-xl items-center justify-start bg-black">
