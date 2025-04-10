@@ -1,103 +1,259 @@
+'use client'
+import { useState } from "react"
 import Image from "next/image";
+import Link from 'next/link';
 
-export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+export default function MyApp() {
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+    const addTask = () => {
+        if (!task) return
+        const newTask = {
+            id: todos.length + 1,
+            title: task,
+            complete: false
+        }
+        setTodos([...todos, newTask])
+        setTask('')
+    }
+
+    const deleteTask = (id: number) => { 
+        console.log("Id: ", id)  
+        const newTodos = todos.filter(todo => todo.id !== id) 
+        setTodos(newTodos)
+    }
+    return (
+        <div className="min-h-screen bg-green-200 md:bg-green-500"> 
+            <div className="flex mt-5 flex-col min-w-xl items-center justify-start bg-black">
+                <header className="text-2xl">Welcome to the reality</header>
+            </div>
+            <div className="grid grid-cols-5 max-md:grid-cols-2 grid-cols-2items-center justify-start bg-green ">
+                <div className=" mt-30 ml-15 min-w-50 border-black border-4 w-1/7 flex flex-col items-center text-black justify-start bg-white ">
+                cool guitar
+                    <Image
+                    src="https://avatars.mds.yandex.net/i?id=dfd4773dd98724b64e1a08f158e1ebeafb82c557-4231170-images-thumbs&n=13"
+                    alt="Guitar"
+                    width={200}
+                    height={200}
+                    className="mt-5"
+                    />
+                    <Link 
+                        className=' bg-black block p-2 m-2 w-fit mb-5 rounded text-white hover:bg-gray-600'
+                        href="/guitar" 
+                        >
+                        BUY
+                    </Link>
+                </div>
+                <div className=" mt-30 ml-15 min-w-50 border-black border-4 w-1/7 flex flex-col items-center text-black justify-start bg-white">
+                cool BASS guitar
+                    <Image
+                    src="https://avatars.mds.yandex.net/i?id=004a8d0100461fa8c687ecfc3fb448ce62272d14-12856446-images-thumbs&n=13"
+                    alt="Guitar"
+                    width={150}
+                    height={150}
+                    className="mt-5"
+                    />
+                    <Link 
+                        className=' bg-black block p-2 m-2 w-fit mb-5 rounded text-white hover:bg-gray-600'
+                        href="/bassGuitar" 
+                        >
+                        BUY
+                    </Link>
+                </div>
+                <div className=" mt-30 ml-15 min-w-50 border-black border-4 w-1/7 flex flex-col items-center text-black justify-start bg-white">
+                cool saxophone 
+                    <Image
+                    src="https://avatars.mds.yandex.net/i?id=a04cc2a9eb97c938f5d36a8806ac95fee36afc57-4230821-images-thumbs&n=13"
+                    alt="Guitar"
+                    width={150}
+                    height={150}
+                    className="mt-5"
+                    />
+                    <Link 
+                        className=' bg-black block p-2 m-2 w-fit mb-5 rounded text-white hover:bg-gray-600'
+                        href="/saxophone" 
+                        >
+                        BUY
+                    </Link>
+                </div>
+                <div className=" mt-30 ml-15 min-w-50 border-black border-4 w-1/7 flex flex-col items-center text-black justify-start bg-white">
+                cool piano 
+                    <Image
+                    src="https://avatars.mds.yandex.net/i?id=8905d2b37a17f8c3042b7a56fdd247016d0eedf0-4146177-images-thumbs&n=13"
+                    alt="piano"
+                    width={150}
+                    height={150}
+                    className="mt-5"
+                    />
+                    <Link 
+                        className=' bg-black block p-2 m-2 w-fit mb-5 rounded text-white hover:bg-gray-600'
+                        href="/piano" 
+                        >
+                        BUY
+                    </Link>
+                </div>
+                <div className=" mt-30 ml-15 border-black min-w-50 border-4 w-1/7 flex flex-col items-center text-black justify-start bg-white">
+                cool triangle
+                    <Image
+                    src="https://avatars.mds.yandex.net/i?id=7dccb3050066b862db216c4e3e36ed41690f30f2-3839645-images-thumbs&n=13"
+                    alt="piano"
+                    width={150}
+                    height={150}
+                    className="mt-5"
+                    />
+                    <Link 
+                        className=' bg-black block p-2 m-2 w-fit  mb-5 rounded text-white hover:bg-gray-600'
+                        href="/triangle" 
+                        >
+                        BUY
+                    </Link>
+                </div>
+                <div className=" mt-30 ml-15 border-black border-4 min-w-50 w-1/7 flex flex-col items-center text-black justify-start bg-white">
+                cool triangle
+                    <Image
+                    src="https://avatars.mds.yandex.net/i?id=3d0bb81aa7b90c135287a6f74b7eec4dfded154d-4575531-images-thumbs&n=13"
+                    alt="piano"
+                    width={150}
+                    height={150}
+                    className="mt-5"
+                    />
+                    <Link 
+                        className=' bg-black block p-2 m-2 w-fit mb-5 rounded text-white hover:bg-gray-600'
+                        href="/triangle" 
+                        >
+                        BUY
+                    </Link>
+                </div>
+                <div className=" mt-30 ml-15 border-black border-4 w-1/7 min-w-50 flex flex-col items-center text-black justify-start bg-white">
+                cool triangle
+                    <Image
+                    src="https://avatars.mds.yandex.net/i?id=b887f6d8d105280046cc325282c7f768008b8b53-12653362-images-thumbs&n=13"
+                    alt="piano"
+                    width={150}
+                    height={150}
+                    className="mt-5"
+                    />
+                    <Link 
+                        className=' bg-black block p-2 m-2 w-fit mb-5 rounded text-white hover:bg-gray-600'
+                        href="/triangle" 
+                        >
+                        BUY
+                    </Link>
+                </div>
+                <div className=" mt-30 ml-15 border-black border-4 w-1/7 min-w-50 flex flex-col items-center text-black justify-start bg-white">
+                cool triangle
+                    <Image
+                    src="https://avatars.mds.yandex.net/i?id=c241ee7e452fc218d85b3b9ef7d8c4a69384a370-6436951-images-thumbs&n=13"
+                    alt="piano"
+                    width={150}
+                    height={150}
+                    className="mt-5"
+                    />
+                    <Link 
+                        className=' bg-black block p-2 m-2 w-fit mb-5 rounded text-white hover:bg-gray-600'
+                        href="/triangle" 
+                        >
+                        BUY
+                    </Link>
+                </div>
+                <div className=" mt-30 ml-15 border-black border-4 w-1/7 min-w-50 flex flex-col items-center text-black justify-start bg-white">
+                cool triangle
+                    <Image
+                    src="https://avatars.mds.yandex.net/i?id=ea9307eb62439735b24250649d0cea8183d71c12-9106685-images-thumbs&n=13"
+                    alt="piano"
+                    width={150}
+                    height={150}
+                    className="mt-5"
+                    />
+                    <Link 
+                        className=' bg-black block p-2 m-2 w-fit mb-5 rounded text-white hover:bg-gray-600'
+                        href="/triangle" 
+                        >
+                        BUY
+                    </Link>
+                </div>
+                <div className=" mt-30 ml-15 border-black border-4 w-1/7 min-w-50 flex flex-col items-center text-black justify-start bg-white">
+                cool triangle
+                    <Image
+                    src="https://avatars.mds.yandex.net/i?id=73899c2266d9a90ff94f6a419c559a6aa7ce6cc9-5209454-images-thumbs&n=13"
+                    alt="piano"
+                    width={150}
+                    height={150}
+                    className="mt-5"
+                    />
+                    <Link 
+                        className=' bg-black block p-2 m-2 w-fit mb-5 rounded text-white hover:bg-gray-600'
+                        href="/triangle" 
+                        >
+                        BUY
+                    </Link>
+                </div>
+            </div>
+            <footer className="text-black flex justify-center bg-green mt-65">copyright@:,)</footer>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
-  );
+    )
 }
+// 'use client'
+
+// import { useState } from "react"
+
+// export default function Todo() {
+
+//     const [todos, setTodos] = useState([
+//         { id: 1, title: 'Writing Next.js', complete: true },
+//         { id: 2, title: 'Do homework', complete: false },
+//         { id: 3, title: 'Sleeping', complete: true },
+//     ])
+
+//     const [task, setTask] = useState('')
+
+//     const addTask = () => {
+//         if (!task) return
+//         const newTask = {
+//             id: todos.length + 1,
+//             title: task,
+//             complete: false
+//         }
+//         setTodos([...todos, newTask])
+//         setTask('')
+//     }
+
+//     const deleteTask = (id: number) => { 
+//         console.log("Id: ", id)  
+//         const newTodos = todos.filter(todo => todo.id !== id) 
+//         setTodos(newTodos)
+//     }
+
+//     return (<div className="border-2 max-w-sm border-gray-300 rounded-lg mx-auto p-4">
+//         <h1 className="text-xl font-bold">Todo</h1>
+//         <div>
+//             <ul>
+//                 {todos.map(todo => (
+//                     <li key={todo.id} className="my-2">
+//                         <span>{todo.id}. </span>
+//                         <span className="mr-2"
+//                         >{todo.title}</span>
+//                         <input
+//                             className="mr-2"
+//                             type="checkbox"
+//                             defaultChecked={todo.complete} />
+//                         <button
+//                             onClick={() => deleteTask(todo.id)} 
+//                             className="border-2 border-gray-300 px-2 hover:bg-red-500 hover:text-white"
+//                             > x </button>
+//                     </li>
+//                 ))}
+//             </ul>
+ 
+//             <input
+//                 className="border-2 border-gray-300 rounded-lg p-2 m-2"
+//                 type="text"
+//                 value={task}
+//                 onChange={e => setTask(e.target.value)}
+//                 placeholder="Add a new todo" />
+//             <button
+//                 onClick={addTask}
+//                 className="border-2 border-gray-300 rounded-lg p-2 m-2 bg-blue-500 text-white"
+//             >Add</button>
+//         </div>
+//     </div>)
+// }
